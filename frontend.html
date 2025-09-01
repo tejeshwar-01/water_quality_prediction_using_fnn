@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Predictor</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            /* Soft and vibrant background gradient */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0077b6;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            color: white;
+            border-radius: 15px;
+            margin: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #48cae4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0096c7;
+        }
+
+        .form-section {
+            padding: 40px 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0077b6;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #0077b6;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: #0077b6;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00b4d8;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background: #0077b6;
+            color: white;
+            padding: 12px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #023e8a;
+        }
+
+        #predictionResult {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #2a9d8f;
+            /* Cool color for prediction result */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #023e8a;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .standards-section {
+            padding: 40px 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .standards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .standards-table th,
+        .standards-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .standards-table th {
+            background-color: #0077b6;
+            color: white;
+        }
+
+        .stats-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #0077b6;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-top: 10px;
+            color: #0077b6;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        💧 Water Quality Predictor
+    </header>
+
+    <section class="hero">
+        <h1>Check Your Water's Safety</h1>
+        <p>Use our AI model to predict if your water is potable or not</p>
+        <a href="#predict-form" class="btn-primary">Start Prediction</a>
+    </section>
+
+    <section id="predict-form" class="form-section">
+        <div class="form-container">
+            <h2>Enter Water Test Values</h2>
+            <form id="water-quality-form">
+                <div class="form-group">
+                    <label for="ph">pH Level:</label>
+                    <input type="number" id="ph" step="0.1" min="0" max="14" required>
+                </div>
+                <div class="form-group">
+                    <label for="Hardness">Hardness (mg/L):</label>
+                    <input type="number" id="Hardness" required>
+                </div>
+                <div class="form-group">
+                    <label for="Solids">Solids (mg/L):</label>
+                    <input type="number" id="Solids" required>
+                </div>
+                <div class="form-group">
+                    <label for="Chloramines">Chloramines (mg/L):</label>
+                    <input type="number" id="Chloramines" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Sulfate">Sulfate (mg/L):</label>
+                    <input type="number" id="Sulfate" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Conductivity">Conductivity (μS/cm):</label>
+                    <input type="number" id="Conductivity" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Organic_carbon">Organic Carbon (mg/L):</label>
+                    <input type="number" id="Organic_carbon" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Trihalomethanes">Trihalomethanes (μg/L):</label>
+                    <input type="number" id="Trihalomethanes" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="Turbidity">Turbidity (NTU):</label>
+                    <input type="number" id="Turbidity" step="0.1" required>
+                </div>
+                <button type="submit">Predict</button>
+            </form>
+            <p id="predictionResult"></p>
+        </div>
+    </section>
+
+    <section id="who-standards" class="standards-section">
+        <h2>WHO Drinking Water Quality Standards</h2>
+        <table class="standards-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Recommended Limit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>pH</td>
+                    <td>6.5 - 8.5</td>
+                </tr>
+                <tr>
+                    <td>Total Dissolved Solids (TDS)</td>
+                    <td>500 mg/L</td>
+                </tr>
+                <tr>
+                    <td>Turbidity</td>
+                    <td>5 NTU</td>
+                </tr>
+                <tr>
+                    <td>Chlorine</td>
+                    <td>0.5 - 1.0 mg/L</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>15 - 25°C</td>
+                </tr>
+                <tr>
+                    <td>Conductivity</td>
+                    <td>200 µS/cm</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="aqua-stats" class="stats-section">
+        <h2>Global Water Insights</h2>
+        <div class="stats-container">
+            <div class="stat-card">
+                <i class="fas fa-tint"></i>
+                <h3>785 Million</h3>
+                <p>People lack access to safe drinking water</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-bacteria"></i>
+                <h3>6,630</h3>
+                <p>Annual deaths from water-related diseases</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-industry"></i>
+                <h3>80%</h3>
+                <p>Of global wastewater returned to ecosystem untreated</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Water Quality Predictor | Made with 💙
+    </footer>
+
+    <script>
+        document.getElementById('water-quality-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const features = {
+                ph: parseFloat(document.getElementById('ph').value),
+                Hardness: parseFloat(document.getElementById('Hardness').value),
+                Solids: parseFloat(document.getElementById('Solids').value),
+                Chloramines: parseFloat(document.getElementById('Chloramines').value),
+                Sulfate: parseFloat(document.getElementById('Sulfate').value),
+                Conductivity: parseFloat(document.getElementById('Conductivity').value),
+                Organic_carbon: parseFloat(document.getElementById('Organic_carbon').value),
+                Trihalomethanes: parseFloat(document.getElementById('Trihalomethanes').value),
+                Turbidity: parseFloat(document.getElementById('Turbidity').value),
+            };
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ features }),
+                });
+
+                const data = await response.json();
+                document.getElementById('predictionResult').textContent = data.prediction || data.error;
+            } catch (error) {
+                document.getElementById('predictionResult').textContent = "Something went wrong.";
+            }
+        });
+    </script>
+</body>
+
+</html>
