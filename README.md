@@ -1,7 +1,7 @@
 # 🌊 AI-Powered Water Quality Predictor
 
 <p align="center">
-  <img src="static/ui_preview.png" width="85%" alt="AI-Powered Water Quality Predictor UI Preview"/>
+  <img src="static/ui.png" width="85%" alt="AI-Powered Water Quality Predictor UI Preview"/>
 </p>
 
 ---
