@@ -2,14 +2,13 @@
 
 <p align="center">
   <img src="static/ui.png" width="85%" alt="AI-Powered Water Quality Predictor UI Preview"/>
-<<<<<<< HEAD
-=======
+
 </p>
 
 <p align="center">
   <b>💧 Predict whether water is safe to drink using a custom Feedforward Neural Network (FNN) integrated with Flask and WHO standards 💧</b><br>
   Built by <a href="https://github.com/tejeshwar-01">Tejeshwar Reddy</a>
->>>>>>> 8f0e608 (Updated README with FNN-based AI details)
+
 </p>
 
 ---
