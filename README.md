@@ -77,34 +77,6 @@ The system offers an intuitive, colorful web interface that allows users to inpu
 
 ---
 
-## 📂 Project Structure
-
-water_quality_prediction_using_fnn/
-│
-├── app.py # Flask backend + WHO validation
-├── train_model_balanced.py # Model training & threshold optimization
-├── evaluate_model.py # Model evaluation metrics
-├── check_potability_distribution.py
-│
-├── templates/
-│ └── frontend.html # Responsive UI for input & prediction
-│
-├── static/
-│ ├── app.js # Frontend JS logic
-│ └── ui.png # Application UI screenshot
-│
-├── water_potability.csv # Dataset
-├── water_quality_model.h5 # Trained FNN model
-├── scaler.pkl # MinMaxScaler for normalization
-├── best_threshold.npy # Optimal decision threshold
-│
-└── README.md # Project documentation
-
-yaml
-Copy code
-
----
-
 ## 💡 WHO Safety Standards
 
 | Parameter | Safe Range | Unit |
