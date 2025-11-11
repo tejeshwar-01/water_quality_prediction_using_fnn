@@ -1,5 +1,6 @@
 🌊 AI-Powered Water Quality Predictor
-<p align="center"> <img src="https://i.imgur.com/0eC9cVu.png" width="80%" alt="Water Quality Prediction Banner"/> </p> <p align="center"> <b>💧 Predict whether water is safe to drink using AI + Flask + WHO standards 💧</b><br> Built by <a href="https://github.com/tejeshwar-01">Tejeshwar Reddy</a> </p>
+<p align="center"> <img src="<img width="1711" height="883" alt="Screenshot 2025-11-11 133207" src="https://github.com/user-attachments/assets/fb440f7e-6f9c-4ddd-972f-f478614adf92" />
+" width="80%" alt="Water Quality Prediction Banner"/> </p> <p align="center"> <b>💧 Predict whether water is safe to drink using AI + Flask + WHO standards 💧</b><br> Built by <a href="https://github.com/tejeshwar-01">Tejeshwar Reddy</a> </p>
 🚀 Overview
 
 An AI-based web application that predicts whether a given water sample is safe or unsafe to drink using a Feedforward Neural Network (FNN).
