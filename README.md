@@ -12,10 +12,15 @@ It integrates Flask, TensorFlow, and WHO guideline validation to ensure accuracy
 🧠 Features
 
 ✅ Feedforward Neural Network (Keras/TensorFlow)
+
 ✅ WHO safety standard validation
+
 ✅ Flask backend for real-time predictions
+
 ✅ Modern colorful responsive UI
+
 ✅ Clear “Safe / Unsafe” result display
+
 ✅ Ready for deployment on Render / Vercel / Heroku
 
 🧰 Tech Stack
@@ -88,17 +93,14 @@ Dense (Hidden)	32	ReLU
 Dense (Output)	1	Sigmoid
 
 Optimizer: Adam
-
 Loss: Binary Crossentropy
-
 Metrics: Accuracy, F1-Score, Precision, Recall
-
-Early Stopping enabled
+Early Stopping: Enabled
 
 💻 Example Predictions
 Sample Input	Result
 pH=7.3, Hardness=220, Solids=15000, Chloramines=2.5, Sulfate=250, Conductivity=1500, Organic Carbon=10, Trihalomethanes=60, Turbidity=3	💧 Water is Safe
-pH=5.5, Hardness=700, Solids=60000, Chloramines=5, Sulfate=500, Conductivity=2500, Organic Carbon=20, Trihalomethanes=120, Turbidity=8	⚠️ Not Safe to Drink
+pH=5.5, Hardness=700, Solids=60000, Chloramines=5, Sulfate=500, Conductivity=2500, Organic Carbon=20, Trihalomethanes=120, Turbidity=8	⚠️ Water is Not Safe to Drink
 🧾 License
 
 Licensed under the MIT License — free to use, modify, and distribute with attribution.
