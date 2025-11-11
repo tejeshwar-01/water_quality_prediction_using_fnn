@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💧 Water Quality Predictor</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right, #a8edea, #fed6e3);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(to right, #0077b6, #00b4d8);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 🌊 Animated Hero Section */
+    .hero {
+      position: relative;
+      background: linear-gradient(to right, #0077b6, #00b4d8);
+      text-align: center;
+      padding: 80px 20px 120px;
+      color: white;
+      border-radius: 0 0 50px 50px;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background-repeat: repeat-x;
+      background-size: 1000px 100px;
+      opacity: 0.5;
+      animation: waveMove 8s linear infinite;
+    }
+
+    .wave1 {
+      background-image: url('https://svgshare.com/i/14fE.svg');
+    }
+
+    .wave2 {
+      background-image: url('https://svgshare.com/i/14fE.svg');
+      animation-delay: -4s;
+      opacity: 0.3;
+    }
+
+    @keyframes waveMove {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #023e8a;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #0096c7;
+      transform: scale(1.05);
+    }
+
+    /* 🧾 Prediction Form */
+    .form-section {
+      max-width: 700px;
+      margin: 60px auto;
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-section h2 {
+      text-align: center;
+      color: #0077b6;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      color: #0077b6;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00b4d8;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(to right, #0077b6, #00b4d8);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #023e8a;
+      transform: scale(1.03);
+    }
+
+    #predictionResult {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2a9d8f;
+    }
+
+    /* 📊 WHO Table */
+    .standards-section {
+      background: #f9f9f9;
+      padding: 50px 20px;
+      border-radius: 15px;
+      margin: 60px auto;
+      max-width: 1000px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .standards-section h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    th {
+      background: #0077b6;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f1f1f1;
+    }
+
+    /* 🌍 Stats Section */
+    .stats-section {
+      background: linear-gradient(to right, #caf0f8, #ade8f4);
+      padding: 50px 20px;
+      border-radius: 15px;
+      max-width: 1000px;
+      margin: 60px auto;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      width: 280px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-card i {
+      color: #0077b6;
+      font-size: 2rem;
+    }
+
+    footer {
+      background: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .form-section {
+        padding: 25px;
+      }
+
+      .stat-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>💧 Water Quality Predictor</header>
+
+  <section class="hero">
+    <h1>Check Your Water’s Safety</h1>
+    <p>Use our AI model to predict if your water is potable or not</p>
+    <a href="#predict-form" class="btn-primary">Start Prediction</a>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+  </section>
+
+  <section id="predict-form" class="form-section">
+    <h2>Enter Water Test Values</h2>
+    <form id="water-quality-form">
+      <div class="form-group"><label>pH Level:</label><input type="number" id="ph" step="0.1" min="0" max="14" required></div>
+      <div class="form-group"><label>Hardness (mg/L):</label><input type="number" id="Hardness" min="0" max="1000" required></div>
+      <div class="form-group"><label>Solids (mg/L):</label><input type="number" id="Solids" min="0" max="50000" required></div>
+      <div class="form-group"><label>Chloramines (mg/L):</label><input type="number" id="Chloramines" min="0" max="10" required></div>
+      <div class="form-group"><label>Sulfate (mg/L):</label><input type="number" id="Sulfate" min="0" max="1000" required></div>
+      <div class="form-group"><label>Conductivity (μS/cm):</label><input type="number" id="Conductivity" min="0" max="5000" required></div>
+      <div class="form-group"><label>Organic Carbon (mg/L):</label><input type="number" id="Organic_carbon" min="0" max="50" required></div>
+      <div class="form-group"><label>Trihalomethanes (μg/L):</label><input type="number" id="Trihalomethanes" min="0" max="200" required></div>
+      <div class="form-group"><label>Turbidity (NTU):</label><input type="number" id="Turbidity" min="0" max="50" required></div>
+      <button type="submit">Predict</button>
+    </form>
+    <p id="predictionResult"></p>
+  </section>
+
+  <section class="standards-section">
+    <h2>WHO Drinking Water Quality Standards</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Recommended Limit</th>
+            <th>Health Impact (if exceeded)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>pH</td><td>6.5 – 8.5</td><td>Corrosion or scaling</td></tr>
+          <tr><td>TDS</td><td>≤ 500 mg/L</td><td>Hardness, poor taste</td></tr>
+          <tr><td>Hardness</td><td>≤ 500 mg/L</td><td>Scaling, reduces soap effect</td></tr>
+          <tr><td>Turbidity</td><td>≤ 5 NTU</td><td>Cloudiness, microbial growth</td></tr>
+          <tr><td>Chloramines</td><td>≤ 4 mg/L</td><td>Eye/nose irritation</td></tr>
+          <tr><td>Sulfate</td><td>≤ 400 mg/L</td><td>Laxative effects</td></tr>
+          <tr><td>Conductivity</td><td>≤ 2000 µS/cm</td><td>Indicates salinity</td></tr>
+          <tr><td>Organic Carbon</td><td>2.2 – 15 mg/L</td><td>Bacterial growth</td></tr>
+          <tr><td>THMs</td><td>≤ 100 µg/L</td><td>Carcinogenic risk</td></tr>
+          <tr><td>Nitrate</td><td>≤ 50 mg/L</td><td>Blue baby syndrome</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <h2>🌍 Global Water Insights</h2>
+    <div class="stats-container">
+      <div class="stat-card">
+        <i class="fas fa-tint"></i>
+        <h3>785M</h3>
+        <p>People lack access to safe drinking water</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-bacteria"></i>
+        <h3>6,630</h3>
+        <p>Annual deaths from water-related diseases</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-industry"></i>
+        <h3>80%</h3>
+        <p>Wastewater returned untreated</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 💧 Water Quality Predictor | Made with 💙</footer>
+
+  <script>
+    document.getElementById("water-quality-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const features = {
+        ph: parseFloat(document.getElementById("ph").value),
+        Hardness: parseFloat(document.getElementById("Hardness").value),
+        Solids: parseFloat(document.getElementById("Solids").value),
+        Chloramines: parseFloat(document.getElementById("Chloramines").value),
+        Sulfate: parseFloat(document.getElementById("Sulfate").value),
+        Conductivity: parseFloat(document.getElementById("Conductivity").value),
+        Organic_carbon: parseFloat(document.getElementById("Organic_carbon").value),
+        Trihalomethanes: parseFloat(document.getElementById("Trihalomethanes").value),
+        Turbidity: parseFloat(document.getElementById("Turbidity").value),
+      };
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ features }),
+        });
+        const data = await response.json();
+        document.getElementById("predictionResult").textContent = data.prediction || data.error;
+      } catch (error) {
+        document.getElementById("predictionResult").textContent = "⚠️ Something went wrong.";
+      }
+    });
+  </script>
+</body>
+
+</html>
