@@ -109,7 +109,8 @@ Licensed under the **MIT License** — free to use, modify, and distribute with 
 
 ---
 ---
- LIVE WEBSITE : https://waterqualitypredictor.up.railway.app/
+ LIVE WEBSITE : [Visit the Water Quality Predictor](https://waterqualitypredictor.up.railway.app/)
+
  ---
 
 ## 👤 Author
